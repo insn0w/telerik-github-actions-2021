@@ -26,7 +26,10 @@ jobs:
       run: |
         echo "Building a container image..."
         sleep 30
-    - name: Deploy to cluster
+   - name: Deploy to cluster
        run: |
+         echo "Deployning..."
+         sleep 30
+         echo "Conteiner has been deployd!"
         echo This job's status is ${{ jobs.status }}." 
      
