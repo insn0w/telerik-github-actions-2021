@@ -1,6 +1,8 @@
 name: Deployment-app
 on: 
   pull-request:
+    paths:
+      - '**.py'
 jobs: 
   name: build-and-deploy:
     strategy:
