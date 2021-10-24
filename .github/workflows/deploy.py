@@ -4,7 +4,7 @@ on:
     paths:
       - '**.py'
 jobs: 
-  name: build-and-deploy:
+  name: build-and-deploy
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
