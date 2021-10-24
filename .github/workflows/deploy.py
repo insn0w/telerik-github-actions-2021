@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - run: echo "This has been triggered $ {{ githusb.event_name }} event."
+      - run: echo "This has been triggered $ {{ github.event_name }} event."
       - run: echo "This job is runining on $ {{ runer.os }} server hosted on github!"
       - name: Check out repository code
         uses: actions/checkout@v2
