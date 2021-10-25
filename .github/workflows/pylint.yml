@@ -22,7 +22,10 @@ jobs:
           python lint_test.py
       - name: Style with pycodestyle
         run: |
-          pycodestyle *.py    
+          pycodestyle *.py
+          - name: Unit testing
+        run: |
+          python3 -m doctest factorial.py
       - name: Build container
         run: |
           echo "Building a container image..."
