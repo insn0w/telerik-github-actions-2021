@@ -9,15 +9,42 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-     - run: echo "${{ secrets.PASSWORD }}"
+    - run: echo "${{ secrets.PASSWORD }}"
     - name "Print custom enviroment from variable for ubuntu"
-    env:
+     env:
         STEP_ENVIRONMENT_VARIABLE: 'custom step environment variable for bash'
       run: |
         echo "Accessing environment variables in run command"
         echo "$WORKSPACE_ENVIRONMENT_VARIABLE"
         echo "$JOB_ENVIRONMENT_VARIABLE"
         echo "$STEP_ENVIRONMENT_VARIABLE"
+    style:
+    needs: pre-build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+#         python-version: ['2.7', '3.8', '3.9']
+        python-version: ['3.9']        
+        exclude:
+          - os: macos-latest
+            python-version: '3.8'
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python --version
+        python -m pip install --upgrade pip
+        pip install pycodestyle
+    - name: Style with pycodestyle
+      run: |
+        python --version
+        pycodestyle *.py     
    lint:
     needs: pre-build
     runs-on: ubuntu-latest
