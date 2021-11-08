@@ -1,0 +1,36 @@
+name: Telerik-Github-Actions-Practice
+env:
+  WORKSPACE_ENVIRONMENT_VARIABLE: 'custom workspace environment variable'
+on: [push]
+jobs:
+  pre-build:
+    env:
+      JOB_ENVIRONMENT_VARIABLE: 'custom job environment variable for ubuntu'
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+     - run: echo "${{ secrets.PASSWORD }}"
+    - name "Print custom enviroment from variable for ubuntu"
+    env:
+        STEP_ENVIRONMENT_VARIABLE: 'custom step environment variable for bash'
+      run: |
+        echo "Accessing environment variables in run command"
+        echo "$WORKSPACE_ENVIRONMENT_VARIABLE"
+        echo "$JOB_ENVIRONMENT_VARIABLE"
+        echo "$STEP_ENVIRONMENT_VARIABLE"
+   lint:
+    needs: pre-build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint
+    - name: Lint with pylint
+      run: |
