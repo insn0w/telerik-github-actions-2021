@@ -35,4 +35,5 @@ jobs:
          sleep 30
          echo "Conteiner has been deployd!"
      - run: echo This job's status is ${{ jobs.status }}." 
+     
     
