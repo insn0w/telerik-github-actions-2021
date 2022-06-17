@@ -1,4 +1,4 @@
-name: Telerik-Github-Actions-Practice
+#name: Telerik-Github-Actions-Practice
 env:
   WORKSPACE_ENVIRONMENT_VARIABLE: 'custom workspace environment variable'
 on: [push]
