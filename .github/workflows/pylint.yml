@@ -40,3 +40,4 @@ jobs:
         sleep 60
         echo "🎉 App has been deployed successfully!"
     - run: echo "This job's status is ${{ job.status }}."
+    
